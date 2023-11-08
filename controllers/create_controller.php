@@ -24,23 +24,21 @@ function incrementId(array $last_article): int
     if (count($last_article) === 0) {
         return -1;
     }
-    return $last_article[0] + 1;
+    return intval($last_article[0]) + 1;
 }
-
-var_dump($_POST);
 
 if (count($_POST) !== 0) {
 
     if ($_POST['title'] !== '' && $_POST['description'] !== '' && $_POST['author'] !== '') {
         $articles_database = fopen("./data/articles.csv", "a");
 
-        $article_id = incrementId(getLastArticle());
-        $article_title = $_POST['title'];
-        $article_description = $_POST['description'];
-        $article_author = $_POST['author'];
-        $article_date = time(); // date(d/m/y H:i:s, $article_date)
+        $article_id = '"' . incrementId(getLastArticle()) . '"';
+        $article_title = '"' . $_POST['title'] . '"';
+        $article_description = '"' . $_POST['description'] . '"';
+        $article_author = '"' . $_POST['author'] . '"';
+        $article_date = '"' . time() . '"';
 
-        fputcsv($articles_database, [$article_id, $article_title, $article_description, $article_author, $article_date]);
+        fputcsv($articles_database, [$article_id, $article_title, $article_description, $article_author, $article_date], ',', ' ');
 
         fclose($articles_database);
 

@@ -1,1 +1,10 @@
-<h1>Home</h1>
+<h1 class="title is-2">Home</h1>
+
+<?php // for every post create div 
+    for ($p = 0; $p < count($posts); ++$p) { ?>
+        <div class="post box">
+            <a href="index.php?page=article&id=<?= str_replace('"', '', $posts[$p][0]) ?>"><h2 class="title is-4"><?= str_replace('"', '', $posts[$p][1]) ?></h2></a>
+            <p class="subtitle"><?= str_replace('"', '', $posts[$p][2])  ?></p>
+            <p><?= 'Posté le ' . date("d/m/y à H:i:s", str_replace('"', '', $posts[$p][4])) . ' par @' . str_replace('"', '', $posts[$p][3])?></p>
+        </div>
+    <?php } ?>

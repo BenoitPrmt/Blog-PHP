@@ -4,20 +4,24 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?= $route ?> - Blog</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
-<body style="font-family: Arial; text-align: center;">
-	<header>
-		<nav>
-			<a href="?page=home">Home</a>
-			<a href="?page=create">Créer un article</a>
+<body style="font-family: Arial;">
+	<header class="container is-max-desktop">
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<a class="navbar-item" href="?page=home">Home</a>
+			<a class="navbar-item" href="?page=create">Créer un article</a>
 		</nav>
 	</header>
 
-	<main>
-		<?php require './controllers/' . $route . '_controller.php'; ?>
+	<main class="container is-max-desktop">
+
+		<section class="section">
+			<?php require './controllers/' . $route . '_controller.php'; ?>
+		</section>
 	</main>
 
-	<footer>
+	<footer class="footer content has-text-centered">
 		Blog - Coda © 2023
 	</footer>
 </body>
