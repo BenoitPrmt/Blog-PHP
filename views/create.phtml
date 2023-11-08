@@ -1,0 +1,21 @@
+<h1>Créer un article</h1>
+
+<form action="index.php?page=create" method="post">
+    <label for="title">Titre de l'article</label><br>
+    <input type="text" name="title" id="title" placeholder="15 caractères maximum" maxlength="15">
+
+    <br><br>
+
+    <label for="description">Corps de l'article</label><br>
+    <textarea type="text" name="description" id="description" placeholder="255 caractères maximum" rows="5" cols="50" maxlength="255"></textarea>
+
+    <br><br>
+
+    <label for="author">Nom de l'auteur</label><br>
+    <input type="text" name="author" id="author" placeholder="20 caractères maximum" maxlength="20">
+
+    <br><br>
+
+    <button type="submit">Poster l'article</button>
+
+</form>
