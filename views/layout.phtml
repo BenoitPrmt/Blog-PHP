@@ -1,16 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?= $route ?> - Blog</title>
+	<title>
+		<?= $route ?> - Blog
+	</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
+
 <body style="font-family: Arial;">
 	<header class="container is-max-desktop">
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 			<a class="navbar-item" href="?page=home">Home</a>
-			<a class="navbar-item" href="?page=create">Créer un article</a>
+
+			<?php if (!isUserConnected()) { ?>
+
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<div class="buttons">
+							<a class="button is-primary" href="?page=login">
+								<strong>Se connecter</strong>
+							</a>
+							<a class="button is-light" href="?page=register">
+								S'inscrire
+							</a>
+						</div>
+					</div>
+				</div>
+
+			<?php } else { ?>
+
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<div class="buttons">
+							<a class="navbar-item" href="?page=create">Créer un article</a>
+						</div>
+					</div>
+				</div>
+
+			<?php } ?>
 		</nav>
 	</header>
 
@@ -25,4 +55,5 @@
 		Blog - Coda © 2023
 	</footer>
 </body>
+
 </html>

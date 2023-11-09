@@ -1,7 +1,7 @@
 <?php 
 date_default_timezone_set('Europe/Paris');
 
-$avalaibleRoutes = ['home', 'create', 'article'];
+$avalaibleRoutes = ['home', 'create', 'article', 'login', 'register'];
 
 $route = 'home';
 
@@ -13,6 +13,11 @@ if (isset($_GET['page']) and in_array($_GET['page'], $avalaibleRoutes)) {
         $route = 'article';
         $post_id = $_GET['id'];
     }
+}
+
+function isUserConnected(): bool
+{
+    return isset($_SESSION['user']);
 }
 
 require './views/layout.phtml';

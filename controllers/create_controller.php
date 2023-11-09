@@ -1,5 +1,26 @@
 <?php
 
+function getUsers()
+{
+    $users = file_get_contents('./data/users.json');
+    $users = json_decode($users, true);
+
+    return $users;
+}
+
+function getUserByUsername($username)
+{
+    $users = getUsers();
+
+    foreach ($users as $user) {
+        if ($user['username'] === $username) {
+            return $user;
+        }
+    }
+
+    return false;
+}
+
 function getLastArticle(): array
 {
     $result = [];
