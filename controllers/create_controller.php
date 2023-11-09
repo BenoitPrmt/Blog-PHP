@@ -31,7 +31,7 @@ if (count($_POST) !== 0) {
 
     if ($_POST['title'] !== '' && $_POST['description'] !== '' && $_POST['author'] !== '') {
 
-        if (strlen($_POST['title']) > 15 && strlen($_POST['description']) > 255 && strlen($_POST['author']) > 20) {
+        if (strlen($_POST['title']) < 15 && strlen($_POST['description']) < 255 && strlen($_POST['author']) < 20) {
             $articles_database = fopen("./data/articles.csv", "a");
 
             $article_id = '"' . incrementId(getLastArticle()) . '"';
