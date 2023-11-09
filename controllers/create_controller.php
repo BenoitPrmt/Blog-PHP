@@ -30,20 +30,25 @@ function incrementId(array $last_article): int
 if (count($_POST) !== 0) {
 
     if ($_POST['title'] !== '' && $_POST['description'] !== '' && $_POST['author'] !== '') {
-        $articles_database = fopen("./data/articles.csv", "a");
 
-        $article_id = '"' . incrementId(getLastArticle()) . '"';
-        $article_title = '"' . $_POST['title'] . '"';
-        $article_description = '"' . $_POST['description'] . '"';
-        $article_author = '"' . $_POST['author'] . '"';
-        $article_date = '"' . time() . '"';
+        if (strlen($_POST['title']) > 15 && strlen($_POST['description']) > 255 && strlen($_POST['author']) > 20) {
+            $articles_database = fopen("./data/articles.csv", "a");
 
-        fputcsv($articles_database, [$article_id, $article_title, $article_description, $article_author, $article_date], ',', ' ');
+            $article_id = '"' . incrementId(getLastArticle()) . '"';
+            $article_title = '"' . $_POST['title'] . '"';
+            $article_description = '"' . $_POST['description'] . '"';
+            $article_author = '"' . $_POST['author'] . '"';
+            $article_date = '"' . time() . '"';
 
-        fclose($articles_database);
+            fputcsv($articles_database, [$article_id, $article_title, $article_description, $article_author, $article_date], ',', ' ');
 
-        header('Location: index.php');
-        die;
+            fclose($articles_database);
+
+            header('Location: index.php');
+            die;
+        } else {
+            echo 'Erreur, veuillez vérifier la longueur de vos informations'
+;        }
     } else {
         echo 'Erreur, veuillez remplir toutes les informations demandées';
     }
