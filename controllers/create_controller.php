@@ -52,13 +52,13 @@ if (count($_POST) !== 0) {
 
     if ($_POST['title'] !== '' && $_POST['description'] !== '' && $_POST['author'] !== '') {
 
-        if (strlen($_POST['title']) < 15 && strlen($_POST['description']) < 255 && strlen($_POST['author']) < 20) {
+        if (strlen($_POST['title']) < 15 && strlen($_POST['description']) < 255) {
             $articles_database = fopen("./data/articles.csv", "a");
 
             $article_id = '"' . incrementId(getLastArticle()) . '"';
             $article_title = '"' . $_POST['title'] . '"';
-            $article_description = '"' . $_POST['description'] . '"';
-            $article_author = '"' . $_POST['author'] . '"';
+            $article_description = '"' . trim(preg_replace('/\s+/', ' ', $_POST['description'])) . '"';
+            $article_author = explode('.SEP.', $_COOKIE['user'])[0];
             $article_date = '"' . time() . '"';
 
             fputcsv($articles_database, [$article_id, $article_title, $article_description, $article_author, $article_date], ',', ' ');
