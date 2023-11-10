@@ -17,7 +17,7 @@ if (isset($_GET['page']) and in_array($_GET['page'], $avalaibleRoutes)) {
 
 function isUserConnected(): bool
 {
-    return isset($_SESSION['user']);
+    return isset($_COOKIE['user']);
 }
 
 require './views/layout.phtml';

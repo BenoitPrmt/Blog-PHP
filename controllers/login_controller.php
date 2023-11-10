@@ -34,10 +34,7 @@ if (isset($_POST['username'], $_POST['password'])) {
     } else {
         if (password_verify($password, $user['password'])) {
 
-            $_SESSION['user'] = [
-                'username' => $user['username'],
-                'password' => $user['password'],
-            ];
+            setcookie('user', $user['username'].'.SEP.'.$user['password'].'.SEP.'.$user['uuid'], time() + 60*60*24);
 
             header('Location: index.php');
             exit;

@@ -7,6 +7,7 @@ function createUser($username, $password)
     $users = getUsers();
 
     $users[] = [
+        'uuid' => uniqid(),
         'username' => $username,
         'password' => password_hash($password, PASSWORD_DEFAULT),
     ];
@@ -32,7 +33,7 @@ function getUserByUsername($username)
         }
     }
 
-    return false;
+    return [];
 }
 
 if (isset($_POST['username'], $_POST['password'])) {
@@ -41,12 +42,12 @@ if (isset($_POST['username'], $_POST['password'])) {
 
     $user = getUserByUsername($username);
 
-    if ($user === false) {
+    if (empty($user)) {
         createUser($username, $password);
         header('Location: index.php?page=login');
         exit;
     } else {
-        $error = 'Nom d\'utilisateur déjà utilisé';
+        echo 'Nom d\'utilisateur déjà utilisé';
     }
 }
 
